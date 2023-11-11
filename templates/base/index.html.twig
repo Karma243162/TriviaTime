@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BaseController!
+{% endblock %}
+
+{% block stylesheets %}
+	{{parent()}}
+
+{% endblock %}
+
+
+{% block body %}
+
+	<div class="container-filter ">
+
+
+		<div class="filter-section">
+			<label for="category">Catégorie :</label>
+			<select id="category">
+				<option value="all">Toutes</option>
+				<option value="science">Science</option>
+				<option value="histoire">Histoire</option>
+				<option value="geographie">Géographie</option>
+
+			</select>
+		</div>
+
+		<div class="filter-section">
+			<label for="difficulty">Difficulté :</label>
+			<select id="difficulty">
+				<option value="all">Toutes</option>
+				<option value="Facile">Facile</option>
+				<option value="Moyen">Moyen</option>
+				<option value="Difficile">Difficile</option>
+			</select>
+		</div>
+
+		<div class="filter-section">
+			<label>Créé par la communauté :</label>
+			<select id="community">
+				<option value="all">Tous</option>
+				<option value="community">Oui</option>
+				<option value="not_community">Non</option>
+			</select>
+		</div>
+
+
+	</div>
+
+
+	<div class="container-cardQuizz mt-5">
+
+
+		{% for quizz in quizzList %}
+		<a style="text-decoration: none;" href="{{path('quizz-id', {'id':quizz.id})}}"</a>
+<div class="cardQuizz" data-category="{{ quizz.categorie.nom }}" data-difficulty="{{ quizz.difficulte }}" {# data-community="{{ quizz.isCommunity }}" #}>
+
+
+				<img class="imageQuizz" src="{{ asset('image/htmlLogo.jpeg') }}" alt="Image du Quiz">
+			
+				<div class="cardQuizz-body">
+					<p class="dificulté">{{quizz.difficulte}}</p>
+					<h3>{{ quizz.titre }}</h3>
+					<p>{{ quizz.categorie.nom }}</p>
+
+
+					<p>Nb Question :
+
+						{{ quizz.nbquestion }}
+					</p>
+				</div>
+			</div>
+		{% endfor %}
+
+
+	</div>
+
+
+
+	<script src="script/filter.js"></script>
+{% endblock %}
