@@ -25,13 +25,19 @@ class AddQuizzType extends AbstractType
         ->add('image', FileType::class, ['attr' => ['class'=> 'form-control'], 'label_attr' => ['class'=> 'fw-bold']])
         ->add('titre', TextType::class, ['attr' => ['class'=> 'form-control'], 'label_attr' => ['class'=> 'fw-bold']])
         ->add('nbQuestion', TextType::class, ['attr' => ['class'=> 'form-control'], 'label_attr' => ['class'=> 'fw-bold']])
-        ->add('difficulte', TextType::class, ['attr' => ['class'=> 'form-control'], 'label_attr' => ['class'=> 'fw-bold']])
+        ->add('difficulte', EntityType::class, [
+            'class' => Quiz::class,
+            'choice_label' => 'difficulte', 
+            'placeholder' => 'Sélectionnez une Difficulté',
+            'attr' => ['class' => 'form-control'], 
+            'label_attr' => ['class' => 'fw-bold'], 
+        ])
         ->add('categorie', EntityType::class, [
             'class' => Categorie::class,
-            'choice_label' => 'nom', // Remplacez 'nom' par le champ que vous souhaitez afficher
+            'choice_label' => 'nom', 
             'placeholder' => 'Sélectionnez une catégorie',
-            'attr' => ['class' => 'form-control'], // Ajoutez des attributs supplémentaires si nécessaire
-            'label_attr' => ['class' => 'fw-bold'], // Ajoutez des attributs supplémentaires au libellé si nécessaire
+            'attr' => ['class' => 'form-control'], 
+            'label_attr' => ['class' => 'fw-bold'], 
         ])
         ->add('envoyer', SubmitType::class, ['attr' => ['class'=> 'btn bg-primary text-white m-4' ], 'row_attr' => ['class' => 'text-center'],])
         ;
