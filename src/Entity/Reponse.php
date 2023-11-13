@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ReponseRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\Get;
@@ -27,13 +28,16 @@ class Reponse
     private ?int $id = null;
 
     #[ORM\Column]
+    #[groups(['reponse:list', 'reponse:item'])]
     private ?bool $isTrue = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[groups(['reponse:list', 'reponse:item'])]
     private ?string $contenu = null;
 
     #[ORM\ManyToOne(inversedBy: 'reponses')]
     #[ORM\JoinColumn(nullable: false)]
+    #[groups(['reponse:list', 'reponse:item', 'question:item', 'question:list'])]
     private ?Question $question = null;
 
     public function getId(): ?int

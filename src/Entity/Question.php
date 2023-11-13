@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\QuestionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
@@ -27,6 +28,7 @@ class Question
     private ?int $id = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[groups(['question:list', 'question:item'])]
     private ?string $image = null;
 
     #[ORM\Column(length: 50)]
@@ -37,9 +39,11 @@ class Question
 
     #[ORM\ManyToOne(inversedBy: 'questions')]
     #[ORM\JoinColumn(nullable: false)]
+    #[groups(['question:list', 'question:item'])]
     private ?Quiz $quiz = null;
 
     #[ORM\Column(length: 255)]
+    #[groups(['question:list', 'question:item'])]
     private ?string $contenu = null;
 
     public function __construct()

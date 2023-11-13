@@ -5,10 +5,14 @@ namespace App\Entity;
 use App\Repository\QuizRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\MetaData\ApiResource;
+use ApiPlatform\Doctrine\Orm\Filter\ExistsFilter;
+use ApiPlatform\Doctrine\Orm\Filter\OrderFilter;
+use ApiPlatform\Metadata\ApiFilter;
 
 #[ApiResource(
     operations: [
@@ -26,7 +30,9 @@ class Quiz
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+
     private ?string $image = null;
+
 
     #[ORM\Column(length: 255)]
     private ?string $titre = null;
