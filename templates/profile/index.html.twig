@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProfileController!
+{% block title %}Profile {{app.user.name}}
 {% endblock %}
 
 {% block body %}
@@ -23,11 +23,16 @@
 							</div>
 							<div class="col">
 								<div class="row align-items-center">
-									<div class="col-md-7">
-										<h4 class="mb-1">{{app.user.name}}</h4>
-										<p class="small mb-3">
-											<span class="badge badge-dark">New York, USA</span>
-										</p>
+									<div class="col-sm">
+										<h4 class="">{{app.user.name}}</h4>
+										{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_MOD')%}
+										<ul >
+											<li style="list-style: none;"><p>Action Admin : </p></li>
+											<a class="text-danger" href="#"><li style="list-style: none;">Ajouter un quizz</a></li>
+											<a href="#"><li style="list-style: none;">Liste des utilisateurs</li></a>
+										</ul>
+										
+										{% endif %}
 									</div>
 								</div>
 
