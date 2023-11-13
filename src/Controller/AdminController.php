@@ -13,7 +13,7 @@ use App\Form\AddQuizzType;
 
 class AdminController extends AbstractController
 {
-    #[Route('/admin', name: 'app_admin')]
+    #[Route('/addQuizz', name: 'app_Quizz')]
     public function index(Request $request,EntityManagerInterface $entityManagerInterface): Response
     {
 

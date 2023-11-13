@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Quiz;
 use App\Entity\Categorie;
+use App\Entity\Difficulte;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -25,13 +26,15 @@ class AddQuizzType extends AbstractType
         ->add('image', FileType::class, ['attr' => ['class'=> 'form-control'], 'label_attr' => ['class'=> 'fw-bold']])
         ->add('titre', TextType::class, ['attr' => ['class'=> 'form-control'], 'label_attr' => ['class'=> 'fw-bold']])
         ->add('nbQuestion', TextType::class, ['attr' => ['class'=> 'form-control'], 'label_attr' => ['class'=> 'fw-bold']])
-        ->add('difficulte', EntityType::class, [
-            'class' => Quiz::class,
-            'choice_label' => 'difficulte', 
-            'placeholder' => 'Sélectionnez une Difficulté',
-            'attr' => ['class' => 'form-control'], 
-            'label_attr' => ['class' => 'fw-bold'], 
+        ->add('difficulty', EntityType::class, [
+            'class' => Difficulte::class,
+            'choice_label' => 'name',
+            'placeholder' => 'Sélectionnez la difficulté',
+            'attr' => ['class' => 'form-control'],
+            'label_attr' => ['class' => 'fw-bold'],
+            'required' => true, // Assurez-vous que le champ est requis
         ])
+        
         ->add('categorie', EntityType::class, [
             'class' => Categorie::class,
             'choice_label' => 'nom', 

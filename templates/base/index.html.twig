@@ -55,13 +55,13 @@
 
 		{% for quizz in quizzList %}
 		<a style="text-decoration: none;" href="{{path('quizz-id', {'id':quizz.id})}}"</a>
-<div class="cardQuizz" data-category="{{ quizz.categorie.nom }}" data-difficulty="{{ quizz.difficulte }}" {# data-community="{{ quizz.isCommunity }}" #}>
+<div class="cardQuizz" data-category="{{ quizz.categorie.nom }}" data-difficulty="{{ quizz.difficulty.name }}" {# data-community="{{ quizz.isCommunity }}" #}>
 
 
 				<img class="imageQuizz" src="{{ asset('image/htmlLogo.jpeg') }}" alt="Image du Quiz">
 			
 				<div class="cardQuizz-body">
-					<p class="dificulté">{{quizz.difficulte}}</p>
+					<p class="dificulté">{{quizz.difficulty.name}}</p>
 					<h3>{{ quizz.titre }}</h3>
 					<p>{{ quizz.categorie.nom }}</p>
 

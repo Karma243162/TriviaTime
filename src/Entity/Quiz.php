@@ -31,8 +31,10 @@ class Quiz
     #[ORM\JoinColumn(nullable: false)]
     private ?Categorie $categorie = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $difficulte = null;
+    
+
+    #[ORM\ManyToOne(inversedBy: 'quizzes')]
+    private ?Difficulte $difficulty = null;
 
     public function __construct()
     {
@@ -122,14 +124,18 @@ class Quiz
         return $this;
     }
 
-    public function getDifficulte(): ?string
+ 
+
+  
+
+    public function getDifficulty(): ?Difficulte
     {
-        return $this->difficulte;
+        return $this->difficulty;
     }
 
-    public function setDifficulte(string $difficulte): static
+    public function setDifficulty(?Difficulte $difficulty): static
     {
-        $this->difficulte = $difficulte;
+        $this->difficulty = $difficulty;
 
         return $this;
     }
