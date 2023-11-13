@@ -6,6 +6,17 @@ use App\Repository\QuestionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\MetaData\ApiResource;
+
+
+#[ApiResource(
+    operations: [
+        new Get(normalizationContext: ["groups" => "question:item"]),
+        new GetCollection(normalizationContext: ["groups" => "question:list"])
+    ]
+)]
 
 #[ORM\Entity(repositoryClass: QuestionRepository::class)]
 class Question
@@ -35,6 +46,8 @@ class Question
     {
         $this->reponses = new ArrayCollection();
     }
+
+
 
     public function getId(): ?int
     {

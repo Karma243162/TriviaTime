@@ -6,8 +6,18 @@ use App\Repository\QuizRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\MetaData\ApiResource;
 
+#[ApiResource(
+    operations: [
+        new Get(normalizationContext: ["groups" => "Quiz:item"]),
+        new GetCollection(normalizationContext: ["groups" => "Quiz:list"])
+    ]
+)]
 #[ORM\Entity(repositoryClass: QuizRepository::class)]
+
 class Quiz
 {
     #[ORM\Id]
@@ -31,7 +41,7 @@ class Quiz
     #[ORM\JoinColumn(nullable: false)]
     private ?Categorie $categorie = null;
 
-    
+
 
     #[ORM\ManyToOne(inversedBy: 'quizzes')]
     private ?Difficulte $difficulty = null;
@@ -124,9 +134,9 @@ class Quiz
         return $this;
     }
 
- 
 
-  
+
+
 
     public function getDifficulty(): ?Difficulte
     {

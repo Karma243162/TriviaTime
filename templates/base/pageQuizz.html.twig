@@ -15,10 +15,13 @@ body %}
 
 	<h1 class="text-white">{{ QuizId.titre }}</h1>
 
-	<p class="text-white">La question ?</p>
+	<p class="text-white">{{questions.contenu}} ?</p>
 
 	<form action="/prochaine_question" method="post">
-		<div class="form-group">
+
+
+
+ 		<div class="form-group">
 			<button type="button" class="btn btn-dark w-25 m-2">A</button>
 
 			<button type="button" class="btn btn-dark w-25 m-2">B</button>
@@ -31,7 +34,7 @@ body %}
 			<button type="button" class="btn btn-dark w-25 m-2">D</button>
 
 
-		</div>
+		</div> 
 		<button type="button" class="btn btn-success w-25 m-2">Valider</button>
 	</form>
 
@@ -53,5 +56,10 @@ body %}
       margin: 0 10px;
   }
   </style>
-
+  
+  {% block javascripts %}
+  {{parent()}}
+  <script src="{{asset("script/script.js")}}"></script>
+   {% endblock %} 
+  
 {% endblock %}
