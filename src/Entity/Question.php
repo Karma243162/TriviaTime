@@ -25,25 +25,28 @@ class Question
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[groups(['question:list', 'question:item', 'reponse:list', 'reponse:item', 'quiz:item', 'quiz:list'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[groups(['question:list', 'question:item'])]
+    #[groups(['question:list', 'question:item', 'reponse:list', 'reponse:item', 'quiz:item', 'quiz:list'])]
+    
     private ?string $image = null;
 
     #[ORM\Column(length: 50)]
     private ?string $niveau = null;
 
     #[ORM\OneToMany(mappedBy: 'question', targetEntity: Reponse::class)]
+    #[groups(['question:list', 'question:item', 'reponse:list', 'reponse:item', 'quiz:list', 'quiz:item'])]
     private Collection $reponses;
 
     #[ORM\ManyToOne(inversedBy: 'questions')]
     #[ORM\JoinColumn(nullable: false)]
-    #[groups(['question:list', 'question:item'])]
+    #[groups(['question:list', 'question:item','quiz:list', 'quiz:item'])]
     private ?Quiz $quiz = null;
 
     #[ORM\Column(length: 255)]
-    #[groups(['question:list', 'question:item'])]
+    #[groups(['question:list', 'question:item', 'reponse:list', 'reponse:item', 'quiz:item', 'quiz:list'])]
     private ?string $contenu = null;
 
     public function __construct()

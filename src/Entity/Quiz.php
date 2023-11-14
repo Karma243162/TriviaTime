@@ -16,8 +16,8 @@ use ApiPlatform\Metadata\ApiFilter;
 
 #[ApiResource(
     operations: [
-        new Get(normalizationContext: ["groups" => "Quiz:item"]),
-        new GetCollection(normalizationContext: ["groups" => "Quiz:list"])
+        new Get(normalizationContext: ["groups" => "quiz:item"]),
+        new GetCollection(normalizationContext: ["groups" => "quiz:list"])
     ]
 )]
 #[ORM\Entity(repositoryClass: QuizRepository::class)]
@@ -27,24 +27,29 @@ class Quiz
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[groups(['quiz:list', 'quiz:item'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-
+    #[groups(['quiz:list', 'quiz:item'])]
     private ?string $image = null;
 
 
     #[ORM\Column(length: 255)]
+    #[groups(['quiz:list', 'quiz:item'])]
     private ?string $titre = null;
 
     #[ORM\Column]
+    #[groups(['quiz:list', 'quiz:item'])]
     private ?int $nbQuestion = null;
 
     #[ORM\OneToMany(mappedBy: 'quiz', targetEntity: Question::class)]
+    #[groups(['quiz:list', 'quiz:item'])]
     private Collection $questions;
 
     #[ORM\ManyToOne(inversedBy: 'quizzes')]
     #[ORM\JoinColumn(nullable: false)]
+    #[groups(['quiz:list', 'quiz:item'])]
     private ?Categorie $categorie = null;
 
 

@@ -12,10 +12,11 @@
 body %}
 	<img class="mt-5" src="chemin_vers_votre_image.jpg" alt="Image liée à la question"/>
 
+	<div id="Quizz">
 
-	<h1 class="text-white">{{ QuizId.titre }}</h1>
+	<h1 id="title-title" class="text-white">{{ QuizId.titre }}</h1>
 
-	<p class="text-white">{{questions.contenu}} ?</p>
+	{# <p id="question" class="text-white">{{questions.contenu}} ?</p> #}
 
 	<form action="/prochaine_question" method="post">
 
@@ -40,7 +41,7 @@ body %}
 
 	<p class="text-white mt-2">Question 1/4</p>
 
-
+</div>
 	<style>
   
     body {

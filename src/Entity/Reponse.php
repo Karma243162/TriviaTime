@@ -32,12 +32,12 @@ class Reponse
     private ?bool $isTrue = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[groups(['reponse:list', 'reponse:item'])]
+    #[groups(['reponse:list', 'reponse:item', 'quiz:list', 'quiz:item'])]
     private ?string $contenu = null;
 
     #[ORM\ManyToOne(inversedBy: 'reponses')]
     #[ORM\JoinColumn(nullable: false)]
-    #[groups(['reponse:list', 'reponse:item', 'question:item', 'question:list'])]
+    #[groups(['reponse:list', 'reponse:item', 'question:item', 'question:list', 'quiz:list', 'quiz:item'])]
     private ?Question $question = null;
 
     public function getId(): ?int
