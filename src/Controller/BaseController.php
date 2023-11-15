@@ -32,12 +32,12 @@ class BaseController extends AbstractController
     {
         $id = $request->get('id');
         $repoQuiz = $emi->getRepository(Quiz::class);
-        $Quiz = $repoQuiz->find($id);
+        $quiz = $repoQuiz->find($id);
         $repoQuestion = $emi->getRepository(Question::class);
         $question = $repoQuestion->find($id);
         
         return $this->render('base/pageQuizz.html.twig', [ // render est la fonction qui va chercher le fichier TWIG pour l’afficher
-            'QuizId' => $Quiz,
+            'quiz' => $quiz,
             'questions' => $question
 
         ]);

@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %}Quizz {{QuizId.titre}}
+{% block title %}Quizz {{quiz.titre}}
 {% endblock %}
 
 {% block stylesheets %}
@@ -10,15 +10,16 @@
 
 {% block
 body %}
+<div id="quizz" data-idQuizz="{{quiz.id}}">
+
 	<img class="mt-5" src="chemin_vers_votre_image.jpg" alt="Image liée à la question"/>
 
-	<div id="Quizz">
 
-	<h1 id="title-title" class="text-white">{{ QuizId.titre }}</h1>
+	<h1 id="title-quizz" class="text-white">{{ quiz.titre }}</h1>
 
 	{# <p id="question" class="text-white">{{questions.contenu}} ?</p> #}
 
-	<form action="/prochaine_question" method="post">
+	<form action="" method="post">
 
 
 

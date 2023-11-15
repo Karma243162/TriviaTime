@@ -1,11 +1,11 @@
- const API_URL = "https://s3-4683.nuage-peda.fr/TiviaTime/public/api/quizzes";
+const API_URL = "https://s3-4683.nuage-peda.fr/TiviaTime/public/api/questions";
 
-async function getQuizzId(id) {
+async function getQuestionId(id) {
     // id
   try {
     //tester la response vers l API
-    const response = await fetch(`${API_URL}/${id}`)
-    console.log(response + "quizz");
+    const response = await fetch(`${API_URL}/${id}}`)
+    console.log(response + " question");
 
     if (!response.ok) {
       // verifier si la reponse est pas ok
@@ -20,5 +20,4 @@ async function getQuizzId(id) {
   }
 }
 
-export { getQuizzId };
- 
+export { getQuestionId };
