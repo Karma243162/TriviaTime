@@ -28,7 +28,7 @@ class Reponse
     private ?int $id = null;
 
     #[ORM\Column]
-    #[groups(['reponse:list', 'reponse:item'])]
+    #[groups(['reponse:list', 'reponse:item', 'quiz:list', 'quiz:item'])]
     private ?bool $isTrue = null;
 
     #[ORM\Column(type: Types::TEXT)]

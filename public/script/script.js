@@ -35,6 +35,10 @@ import { getQuizzId } from "./api/api_quizz.js";
 } */
 
 
+function isClick() { 
+  this.classList.add = "bg-warning"
+}
+
 
  async function QuizzId(id) { 
    try {
@@ -62,23 +66,30 @@ import { getQuizzId } from "./api/api_quizz.js";
 
     var buttonA = document.createElement("button")
     buttonA.classList.add("btn", "btn-dark", "w-25", "m-2")
-    buttonA.innerText = "A";
+    buttonA.addEventListener('click', isClick, false)
+  
+
+  if (buttonA.innerText = quizz.questions[0].reponses[0].contenu) {
+       buttonA.innerText = quizz.questions[0].reponses[0].contenu;
+    } else { 
+      buttonA.style.display = "none"
+    }
 
     var buttonB = document.createElement("button")
     buttonB.classList.add("btn", "btn-dark", "w-25", "m-2")
-    buttonB.innerText = "A";
+    buttonB.innerText = quizz.questions[0].reponses[1].contenu;
 
     var divCd = document.createElement("div")
     divCd.classList.add("form-group", "d-flex", "justify-content-center")
 
     var buttonC = document.createElement("button")
     buttonC.classList.add("btn", "btn-dark", "w-25", "m-2")
-    buttonC.innerText = "A";
+   buttonC.innerText = quizz.questions[0].reponses[2].contenu
+
 
     var buttonD = document.createElement("button")
     buttonD.classList.add("btn", "btn-dark", "w-25", "m-2")
-    buttonD.innerText = "A";
-
+    buttonD.innerText = quizz.questions[0].reponses[3].contenu
     //button valide 
 
     var buttonValide = document.createElement("button")
