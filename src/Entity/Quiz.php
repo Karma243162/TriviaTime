@@ -57,6 +57,9 @@ class Quiz
     #[ORM\ManyToOne(inversedBy: 'quizzes')]
     private ?Difficulte $difficulty = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $fileName = null;
+
     public function __construct()
     {
         $this->questions = new ArrayCollection();
@@ -157,6 +160,18 @@ class Quiz
     public function setDifficulty(?Difficulte $difficulty): static
     {
         $this->difficulty = $difficulty;
+
+        return $this;
+    }
+
+    public function getFileName(): ?string
+    {
+        return $this->fileName;
+    }
+
+    public function setFileName(?string $fileName): static
+    {
+        $this->fileName = $fileName;
 
         return $this;
     }

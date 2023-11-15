@@ -33,8 +33,6 @@ class Question
     
     private ?string $image = null;
 
-    #[ORM\Column(length: 50)]
-    private ?string $niveau = null;
 
     #[ORM\OneToMany(mappedBy: 'question', targetEntity: Reponse::class)]
     #[groups(['question:list', 'question:item', 'reponse:list', 'reponse:item', 'quiz:list', 'quiz:item'])]
@@ -73,17 +71,7 @@ class Question
         return $this;
     }
 
-    public function getNiveau(): ?string
-    {
-        return $this->niveau;
-    }
 
-    public function setNiveau(string $niveau): static
-    {
-        $this->niveau = $niveau;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Reponse>

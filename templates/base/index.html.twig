@@ -58,7 +58,7 @@
 <div class="cardQuizz" data-category="{{ quizz.categorie.nom }}" data-difficulty="{{ quizz.difficulty.name }}" {# data-community="{{ quizz.isCommunity }}" #}>
 
 
-				<img class="imageQuizz" src="{{ asset('image/htmlLogo.jpeg') }}" alt="Image du Quiz">
+	<img style="widht: 100%; height:200px;" src="{{'imageQuizz/' ~ quizz.fileName }}" alt="L'image n'a pas charger"></img>
 			
 				<div class="cardQuizz-body">
 					<p class="dificulté">{{quizz.difficulty.name}}</p>

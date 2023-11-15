@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\File;
 
 
 
@@ -23,7 +24,19 @@ class AddQuizzType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('image', FileType::class, ['attr' => ['class'=> 'form-control'], 'label_attr' => ['class'=> 'fw-bold']])
+        ->add('image', FileType::class, array('label' => "Image du quizz",
+            'constraints' => [
+                new File([
+                    'maxSize' => '5000000k',
+                    'mimeTypes' => [
+                        'image/jpg',
+                        'image/webp',
+                        'image/png',
+                        'image/gif',
+                    ],
+                    'mimeTypesMessage' => 'Le site accepte uniquement les fichiers PNG, JPG, webp et gif',
+                ])
+            ],))
         ->add('titre', TextType::class, ['attr' => ['class'=> 'form-control'], 'label_attr' => ['class'=> 'fw-bold']])
         ->add('nbQuestion', TextType::class, ['attr' => ['class'=> 'form-control'], 'label_attr' => ['class'=> 'fw-bold']])
         ->add('difficulty', EntityType::class, [

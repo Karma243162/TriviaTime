@@ -22,3 +22,7 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+parameters:
+    file_directory_quizz: '%kernel.project_dir%/public/imageQuizz'
+    file_directory_question: '%kernel.project_dir%/public/imageQuestion'
