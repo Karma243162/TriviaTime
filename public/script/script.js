@@ -1,63 +1,34 @@
-console.log('EH EHE  H');
-import { getReponse } from "./api/api_reponse.js";
-/* import { getQuestionId } from "./api/api_question.js" */
+
 import { getQuizzId } from "./api/api_quizz.js";
 
-/* async function AfficherReponse() {
-  try {
-    const reponse = await getReponse();
-    const reponses = reponse["hydra:member"]
-    var quizz = document.getElementById('Quizz')
-    
-     for (const reponse of reponses) {
-      console.log(reponses[0]);
-      var question = document.createElement("p");
-      question.classList.add("text-white");
-      question.innerText = reponse.question.contenu + " ?";
-      quizz.appendChild(question);
-  } 
 
-   for (let i = 0; i < reponses.length; i--) {
-    const question = reponses[i].question;
-    console.log(question);
-    var question = document.createElement("p");
-    question.classList.add("text-white");
-    question.innerText = reponse.question.contenu + " ?";
-    quizz.appendChild(question);
-  }
- 
-   
- 
-  } catch (erreur) {
-    console.error('Erreur lors de la recuperation :', erreur); 
-    throw erreur; // passer l erreur
-  }
-} */
-
-
-var test;
-
+let indice = 0;
+var question;
+var buttonA;
+var buttonB; 
+var buttonC; 
+var buttonD; 
+var reponse; 
+var quizz;
 
 async function QuizzId(id) {
   try {
-    const quizz = await getQuizzId(id)
+    quizz = await getQuizzId(id)
     console.log(quizz);
     var quizzDiv = document.getElementById("quizz");
 
 
-    function isClick() {
-      this.classList.toggle("btn-light");
-      this.classList.toggle("btn-dark");
-
-
-
-    }
 
     function isTrue() {
       if (this.reponse == true) {
-        console.log("la reponse est bonne");
-        
+        alert("la reponse est bonne")
+        this.classList.add("btn-success");
+
+      } else {
+        alert("la reponse est mauvaise")
+        this.classList.add("btn-success");
       }
+      suivant();
     }
 
     //title
@@ -66,7 +37,7 @@ async function QuizzId(id) {
     titleQuizz.innerText = quizz.titre;
 
     //question
-    var question = document.createElement("p");
+    question = document.createElement("p");
     question.classList.add("text-white");
     question.innerText = quizz.questions[0].contenu + " ?";
 
@@ -78,43 +49,36 @@ async function QuizzId(id) {
 
     // reponse > Button
 
-    var buttonA = document.createElement("button")
+     buttonA = document.createElement("button")
     buttonA.classList.add("btn", "btn-dark", "w-25", "m-2")
-    buttonA.addEventListener('click', isClick, false)
     buttonA.addEventListener('click', isTrue, false)
     buttonA.innerText = quizz.questions[0].reponses[0].contenu
     buttonA.reponse = quizz.questions[0].reponses[0].isTrue;
 
 
 
-    var buttonB = document.createElement("button")
+     buttonB = document.createElement("button")
     buttonB.classList.add("btn", "btn-dark", "w-25", "m-2")
     buttonB.innerText = quizz.questions[0].reponses[1].contenu;
     buttonB.reponse = quizz.questions[0].reponses[1].isTrue;
-    buttonB.addEventListener('click', isClick, false)
     buttonB.addEventListener('click', isTrue, false)
 
     var divCd = document.createElement("div")
     divCd.classList.add("form-group", "d-flex", "justify-content-center")
 
-    var buttonC = document.createElement("button")
+     buttonC = document.createElement("button")
     buttonC.classList.add("btn", "btn-dark", "w-25", "m-2")
     buttonC.innerText = quizz.questions[0].reponses[2].contenu
     buttonC.reponse = quizz.questions[0].reponses[2].isTrue;
-    buttonC.addEventListener('click', isClick, false)
     buttonC.addEventListener('click', isTrue, false)
 
-    var buttonD = document.createElement("button")
+    buttonD = document.createElement("button")
     buttonD.classList.add("btn", "btn-dark", "w-25", "m-2")
     buttonD.innerText = quizz.questions[0].reponses[3].contenu
     buttonD.reponse = quizz.questions[0].reponses[3].isTrue;
-    buttonD.addEventListener('click', isClick, false)
     buttonD.addEventListener('click', isTrue, false)
     //button valide 
 
-    var buttonValide = document.createElement("button")
-    buttonValide.classList.add("btn", "btn-success", "w-25", "m-2")
-    buttonValide.innerText = "Valider votre question"
 
     //appenChild
 
@@ -126,19 +90,27 @@ async function QuizzId(id) {
     quizzDiv.appendChild(question);
     quizzDiv.appendChild(divAb)
     quizzDiv.appendChild(divCd)
-    quizzDiv.appendChild(buttonValide)
+
 
 
 
   } catch (erreur) {
     console.error('Erreur lors de la recuperation :', erreur);
-    throw erreur; // passer l erreur
+    throw erreur; 
   }
 }
 
-/* AfficherReponse() */
-/* QuestionId() */
+
 var quizz = document.getElementById('quizz');
 var idQuiz = quizz.getAttribute('data-idQuizz');
 
 QuizzId(idQuiz);
+
+function suivant(){
+  indice++;
+  question.innerText = quizz.questions[indice].contenu + " ?";
+  buttonA.innerText = quizz.questions[indice].reponses[0].contenu
+  buttonB.innerText = quizz.questions[indice].reponses[1].contenu
+  buttonC.innerText = quizz.questions[indice].reponses[2].contenu
+  buttonD.innerText = quizz.questions[indice].reponses[3].contenu
+}
