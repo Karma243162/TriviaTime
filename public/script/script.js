@@ -26,11 +26,20 @@ async function QuizzId(id) {
         updateScore();
         console.log(score);
       } else {
-        alert("la reponse est mauvaise")
+        alert("La réponse est incorrecte. La bonne réponse était " + "'" + getBonneReponse() + "'")
         this.classList.add("btn-success");
       }
       suivant();
     }
+
+    function getBonneReponse() {
+      for (let i = 0; i < quizz.questions[indice].reponses.length; i++) {
+          if (quizz.questions[indice].reponses[i].isTrue) {
+              return quizz.questions[indice].reponses[i].contenu;
+          }
+      }
+      return "Non spécifié";
+  }
 
     function updateScore() {
       // Mettre à jour l'affichage du score
