@@ -35,30 +35,44 @@ import { getQuizzId } from "./api/api_quizz.js";
 } */
 
 
-function isClick() { 
-  this.classList.add = "bg-warning"
-}
+var test;
 
 
- async function QuizzId(id) { 
-   try {
-     const quizz = await getQuizzId(id)
-     console.log(quizz);
-     var quizzDiv = document.getElementById("quizz");
+async function QuizzId(id) {
+  try {
+    const quizz = await getQuizzId(id)
+    console.log(quizz);
+    var quizzDiv = document.getElementById("quizz");
 
-     //title
-     var titleQuizz = document.createElement("h1");
-     titleQuizz.classList.add("text-white");
-    titleQuizz.innerText = quizz.titre; 
-    
+
+    function isClick() {
+      this.classList.toggle("btn-light");
+      this.classList.toggle("btn-dark");
+
+
+
+    }
+
+    function isTrue() {
+      if (this.reponse == true) {
+        console.log("la reponse est bonne");
+        
+      }
+    }
+
+    //title
+    var titleQuizz = document.createElement("h1");
+    titleQuizz.classList.add("text-white");
+    titleQuizz.innerText = quizz.titre;
+
     //question
-     var question = document.createElement("p");
-     question.classList.add("text-white");
-     question.innerText = quizz.questions[0].contenu+ " ?";
+    var question = document.createElement("p");
+    question.classList.add("text-white");
+    question.innerText = quizz.questions[0].contenu + " ?";
 
     //reponses
 
-    var form = document.createElement("form"); 
+
     var divAb = document.createElement("div")
     divAb.classList.add("form-group", "d-flex", "justify-content-center")
 
@@ -67,29 +81,35 @@ function isClick() {
     var buttonA = document.createElement("button")
     buttonA.classList.add("btn", "btn-dark", "w-25", "m-2")
     buttonA.addEventListener('click', isClick, false)
-  
+    buttonA.addEventListener('click', isTrue, false)
+    buttonA.innerText = quizz.questions[0].reponses[0].contenu
+    buttonA.reponse = quizz.questions[0].reponses[0].isTrue;
 
-  if (buttonA.innerText = quizz.questions[0].reponses[0].contenu) {
-       buttonA.innerText = quizz.questions[0].reponses[0].contenu;
-    } else { 
-      buttonA.style.display = "none"
-    }
+
 
     var buttonB = document.createElement("button")
     buttonB.classList.add("btn", "btn-dark", "w-25", "m-2")
     buttonB.innerText = quizz.questions[0].reponses[1].contenu;
+    buttonB.reponse = quizz.questions[0].reponses[1].isTrue;
+    buttonB.addEventListener('click', isClick, false)
+    buttonB.addEventListener('click', isTrue, false)
 
     var divCd = document.createElement("div")
     divCd.classList.add("form-group", "d-flex", "justify-content-center")
 
     var buttonC = document.createElement("button")
     buttonC.classList.add("btn", "btn-dark", "w-25", "m-2")
-   buttonC.innerText = quizz.questions[0].reponses[2].contenu
-
+    buttonC.innerText = quizz.questions[0].reponses[2].contenu
+    buttonC.reponse = quizz.questions[0].reponses[2].isTrue;
+    buttonC.addEventListener('click', isClick, false)
+    buttonC.addEventListener('click', isTrue, false)
 
     var buttonD = document.createElement("button")
     buttonD.classList.add("btn", "btn-dark", "w-25", "m-2")
     buttonD.innerText = quizz.questions[0].reponses[3].contenu
+    buttonD.reponse = quizz.questions[0].reponses[3].isTrue;
+    buttonD.addEventListener('click', isClick, false)
+    buttonD.addEventListener('click', isTrue, false)
     //button valide 
 
     var buttonValide = document.createElement("button")
@@ -102,22 +122,23 @@ function isClick() {
     divAb.appendChild(buttonB)
     divCd.appendChild(buttonC)
     divCd.appendChild(buttonD)
-    form.appendChild(divAb)
-    form.appendChild(divCd)
-    form.appendChild(buttonValide)
-    quizzDiv.appendChild(titleQuizz);   
+    quizzDiv.appendChild(titleQuizz);
     quizzDiv.appendChild(question);
-    quizzDiv.appendChild(form);
+    quizzDiv.appendChild(divAb)
+    quizzDiv.appendChild(divCd)
+    quizzDiv.appendChild(buttonValide)
 
-   } catch(erreur) { 
-     console.error('Erreur lors de la recuperation :', erreur); 
+
+
+  } catch (erreur) {
+    console.error('Erreur lors de la recuperation :', erreur);
     throw erreur; // passer l erreur
-   }
- }
+  }
+}
 
 /* AfficherReponse() */
 /* QuestionId() */
- var quizz = document.getElementById('quizz');
- var idQuiz = quizz.getAttribute('data-idQuizz');
+var quizz = document.getElementById('quizz');
+var idQuiz = quizz.getAttribute('data-idQuizz');
 
- QuizzId(idQuiz);
+QuizzId(idQuiz);
