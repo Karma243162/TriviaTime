@@ -9,6 +9,7 @@ var buttonB;
 var buttonC; 
 var buttonD; 
 var reponse; 
+
 var quizz;
 
 async function QuizzId(id) {
@@ -16,14 +17,14 @@ async function QuizzId(id) {
     quizz = await getQuizzId(id)
     console.log(quizz);
     var quizzDiv = document.getElementById("quizz");
-
-
-
+    var score = 0;
     function isTrue() {
       if (this.reponse == true) {
         alert("la reponse est bonne")
         this.classList.add("btn-success");
-
+        score++
+        updateScore();
+        console.log(score);
       } else {
         alert("la reponse est mauvaise")
         this.classList.add("btn-success");
@@ -31,9 +32,14 @@ async function QuizzId(id) {
       suivant();
     }
 
+    function updateScore() {
+      // Mettre à jour l'affichage du score
+      point.innerText = "Votre score : " + score;
+  }
+
     //title
     var titleQuizz = document.createElement("h1");
-    titleQuizz.classList.add("text-white");
+    titleQuizz.classList.add("text-white", "mt-5");
     titleQuizz.innerText = quizz.titre;
 
     //question
@@ -77,8 +83,13 @@ async function QuizzId(id) {
     buttonD.innerText = quizz.questions[0].reponses[3].contenu
     buttonD.reponse = quizz.questions[0].reponses[3].isTrue;
     buttonD.addEventListener('click', isTrue, false)
-    //button valide 
+    
+    // Question numero
 
+    var point = document.createElement("p");
+    point.classList.add("text-white");
+
+  
 
     //appenChild
 
@@ -90,6 +101,7 @@ async function QuizzId(id) {
     quizzDiv.appendChild(question);
     quizzDiv.appendChild(divAb)
     quizzDiv.appendChild(divCd)
+    quizzDiv.appendChild(point)
 
 
 
@@ -110,7 +122,11 @@ function suivant(){
   indice++;
   question.innerText = quizz.questions[indice].contenu + " ?";
   buttonA.innerText = quizz.questions[indice].reponses[0].contenu
+  buttonA.reponse = quizz.questions[indice].reponses[0].isTrue;
   buttonB.innerText = quizz.questions[indice].reponses[1].contenu
+  buttonB.reponse = quizz.questions[indice].reponses[1].isTrue;
   buttonC.innerText = quizz.questions[indice].reponses[2].contenu
+  buttonC.reponse = quizz.questions[indice].reponses[2].isTrue;
   buttonD.innerText = quizz.questions[indice].reponses[3].contenu
+  buttonD.reponse = quizz.questions[indice].reponses[3].isTrue;
 }
